@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cc-management-app
+  namespace: credit-card-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cc-management-app
+  template:
+    metadata:
+      labels:
+        app: cc-management-app
+    spec:
+      containers:
+        - name: cc-management-app
+          image: cc-management-service:1.0  # Use the image name you build
+          ports:
+            - containerPort: 5000
+          env:
+            - name: SQLALCHEMY_DATABASE_URI
+              value: mysql://$(MYSQL_USER):$(MYSQL_PASSWORD)@mysql:3306/credit_cards_db
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-credentials
+                  key: username
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-credentials
+                  key: password
