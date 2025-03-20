@@ -8,7 +8,5 @@ jobs:
       - name: Run SonarScanner
         run: |
           sonar-scanner \
-            -Dsonar.projectKey=<your_project_key> \
-            -Dsonar.organization=<your_organization> \
-            -Dsonar.host.url=<your_sonarqube_url> \
+            -Dsonar.organization=CreditCardWebApp \
             -Dsonar.login=${{ secrets.SONAR_TOKEN }}
