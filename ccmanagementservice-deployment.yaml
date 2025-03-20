@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: cc-management-app
-          image: localhost:39533/cc-management-service:1.0  # Use the image name you build
+          image: 2023cs03011/cc-management-service:latest  # Use the image name you build
           ports:
             - containerPort: 5000
           env:
